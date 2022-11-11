@@ -152,7 +152,7 @@ public class App {
 								System.exit(0);
 							}
 						}
-							
+
 						default -> {
 							Logger.log("Invalid option from user");
 							System.out.println("Invalid input");
@@ -164,15 +164,14 @@ public class App {
 				case 5 -> {
 					SaveDatabase.save(storage);
 
-					boolean ask2 = askToContinue();
+					boolean ask = askToContinue();
 
-					if (ask2 != true) {
+					if (ask != true) {
 						System.out.println("Exiting program...");
 						Logger.log("Exiting program");
 						System.exit(0);
 					}
 				}
-				
 
 				case 6 -> {
 					List<CD> list = ConvertDatabaseToCollection.convert(ReadDatabase.read());
@@ -187,9 +186,9 @@ public class App {
 
 					System.out.println();
 
-					boolean ask3 = askToContinue();
+					boolean ask = askToContinue();
 
-					if (ask3 != true) {
+					if (ask != true) {
 						System.out.println("Exiting program...");
 						Logger.log("Exiting program");
 						System.exit(0);
@@ -223,16 +222,19 @@ public class App {
 			System.out.println();
 
 			switch (option) {
-				case 1:
+				case 1 -> {
 					return true;
+				}
 
-				case 2:
+				case 2 -> {
 					return false;
+				}
 
-				default:
+				default -> {
 					Logger.log("Invalid option from user");
 					System.out.println("Invalid input");
 					break;
+				}
 			}
 		}
 	}
