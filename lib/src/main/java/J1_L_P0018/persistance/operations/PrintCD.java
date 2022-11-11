@@ -24,7 +24,7 @@ class PrintCD {
 		}
 
 		// print the CD
-		int index = SearchCDFromStorage.search(storage, id);
+		int index = SearchCDFromStorage.searchByID(storage, id);
 
 		if (index == -1) {
 			Logger.log(Error.CANNOT_FIND_CD.toString());

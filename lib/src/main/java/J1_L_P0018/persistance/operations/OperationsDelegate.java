@@ -14,9 +14,14 @@ public class OperationsDelegate {
 		DeleteCDFromStorage.delete(storage, id);
 	}
 
-	// search function
+	// search CD by ID
 	public final int searchCD(CDStorage storage, String id) {
-		return SearchCDFromStorage.search(storage, id);
+		return SearchCDFromStorage.searchByID(storage, id);
+	}
+
+	// search CD by title
+	public final Integer[] searchCDByTitle(CDStorage storage, String title) {
+		return SearchCDFromStorage.searchByTitles(storage, title);
 	}
 
 	// print a CD

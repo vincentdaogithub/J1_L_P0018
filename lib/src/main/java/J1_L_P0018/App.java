@@ -42,6 +42,7 @@ public class App {
 
 			switch (option) {
 				case 1 -> {
+					Logger.log("Asking to add CD...");
 					CD add = AskUserCD.ask(storage);
 
 					if (add == null) {
@@ -55,6 +56,14 @@ public class App {
 				}
 
 				case 2 -> {
+					Logger.log("Asking to search CD by titles...");
+					if (storage.getSize() <= 0) {
+						Logger.log(Error.EMPTY_STORAGE.toString());
+						System.out.println(Error.EMPTY_STORAGE.toString());
+						System.out.println();
+						break;
+					}
+
 					String id = AskUserID.ask();
 
 					if (id == null) {
@@ -65,20 +74,27 @@ public class App {
 
 					System.out.println();
 
-					int index = delegate.searchCD(storage, id);
+					Integer[] titles = delegate.searchCDByTitle(storage, id);
 
-					if (index == -1) {
+					if (titles == null) {
 						Logger.log(Error.CANNOT_FIND_CD.toString());
 						System.out.println(Error.CANNOT_FIND_CD.toString());
 						System.out.println();
 						break;
 					}
 
-					delegate.printCD(storage, index);
+					CD[] tmpStorage = storage.getStorage();
+
+					for (int index : titles) {
+						System.out.println(GetCDInformation.get(tmpStorage[index]));
+					}
+
 					System.out.println();
 				}
 
 				case 3 -> {
+					Logger.log("Asking to print CDs in program...");
+
 					System.out.println("Number of CD: " + storage.getSize());
 					delegate.printAllCDs(storage);
 					System.out.println();
@@ -101,6 +117,8 @@ public class App {
 
 					switch (updateOption) {
 						case 1 -> {
+							Logger.log("Asking to update CD...");
+
 							String id = AskUserID.ask();
 
 							if (id == null) {
@@ -132,6 +150,8 @@ public class App {
 						}
 
 						case 2 -> {
+							Logger.log("Asking to delete CD...");
+
 							String id = AskUserID.ask();
 
 							if (id == null) {
@@ -162,6 +182,8 @@ public class App {
 				}
 
 				case 5 -> {
+					Logger.log("Asking to save database...");
+
 					SaveDatabase.save(storage);
 
 					boolean ask = askToContinue();
@@ -174,6 +196,8 @@ public class App {
 				}
 
 				case 6 -> {
+					Logger.log("Asking to print CDs from database...");
+
 					List<CD> list = ConvertDatabaseToCollection.convert(ReadDatabase.read());
 
 					Collections.sort(list, (CD cd1, CD cd2) -> {
@@ -196,8 +220,8 @@ public class App {
 				}
 
 				default -> {
-					System.out.println("Exiting program...");
 					Logger.log("Exiting program");
+					System.out.println("Exiting program...");
 					System.exit(0);
 					break;
 				}
