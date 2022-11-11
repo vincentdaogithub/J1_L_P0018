@@ -21,7 +21,7 @@ public class GetCDInformation {
 		builder.append(" \"");
 		builder.append(cd.getTitle());
 		builder.append("\" ");
-		builder.append(String.format("%.2f", cd.getPrice()));
+		builder.append(String.format("%.2f$", cd.getPrice()));
 		builder.append(' ');
 		builder.append(cd.getYear());
 

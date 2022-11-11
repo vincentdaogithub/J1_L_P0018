@@ -56,6 +56,4 @@ class PrintCD {
 		System.out.println(GetCDInformation.get(tmpStorage[index]));
 		Logger.log("CD printed");
 	}
-
-	
 }
