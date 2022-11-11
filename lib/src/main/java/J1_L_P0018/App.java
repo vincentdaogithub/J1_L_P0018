@@ -17,7 +17,6 @@ import J1_L_P0018.persistance.entity.cd_storage.CDStorage;
 import J1_L_P0018.persistance.operations.GetCDInformation;
 import J1_L_P0018.persistance.operations.OperationsDelegate;
 import J1_L_P0018.presentation.MainMenu;
-import J1_L_P0018.tools.CheckFormat;
 import J1_L_P0018.tools.ConvertUserInput;
 import J1_L_P0018.tools.ReadUserInput;
 
@@ -27,8 +26,6 @@ public class App {
 		CDStorage storage = ReadDatabase.read();
 		OperationsDelegate delegate = new OperationsDelegate();
 		MainMenu menu = new MainMenu();
-
-		System.out.println(CheckFormat.checkFormat("fuckyou abc", "[a]"));
 
 		while (true) {
 			menu.print();
