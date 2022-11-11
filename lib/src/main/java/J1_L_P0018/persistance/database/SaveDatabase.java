@@ -32,7 +32,7 @@ public class SaveDatabase {
 		}
 
 		// save to database
-		try (PrintWriter writer = new PrintWriter(new File("test.txt"))) {
+		try (PrintWriter writer = new PrintWriter(new File(FILE_PATH))) {
 			CD[] tmpStorage = storage.getStorage();
 			int tmpSize = storage.getSize();
 			
