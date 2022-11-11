@@ -11,7 +11,7 @@ public class AskUserType {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's type: ");
+			System.out.print("Enter CD's type (audio/video/unknown): ");
 
 			try {
 				input = ReadUserInput.readString();

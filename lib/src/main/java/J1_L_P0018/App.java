@@ -34,9 +34,7 @@ public class App {
 			if (option == null) {
 				Logger.log("Invalid option from user");
 				System.out.println("Invalid input");
-
 				System.out.println();
-
 				continue;
 			}
 
@@ -57,11 +55,22 @@ public class App {
 					break;
 
 				case 2:
-					int index = delegate.searchCD(storage, AskUserID.ask());
+					String tmp4 = AskUserID.ask();
+
+					if (tmp4 == null) {
+						System.out.println("Cancelled");
+						System.out.println();
+						break;
+					}
+
+					System.out.println();
+
+					int index = delegate.searchCD(storage, tmp4);
 
 					if (index == -1) {
 						Logger.log(Error.CANNOT_FIND_CD.toString());
 						System.out.println(Error.CANNOT_FIND_CD.toString());
+						System.out.println();
 						break;
 					}
 
@@ -72,6 +81,7 @@ public class App {
 				case 3:
 					System.out.println("Number of CD: " + storage.getSize());
 					delegate.printAllCDs(storage);
+					System.out.println();
 					break;
 
 				case 4:
@@ -94,12 +104,13 @@ public class App {
 							String tmp2 = AskUserID.ask();
 
 							if (tmp2 == null) {
-								Logger.log("Invalid input");
-								System.out.println("Invalid input");
+								Logger.log("Cancelled");
+								System.out.println("Cancelled");
+								System.out.println();
 								break;
 							}
 
-							int index1 = delegate.searchCD(storage, AskUserID.ask());
+							int index1 = delegate.searchCD(storage, tmp2);
 
 							if (index1 == -1) {
 								Logger.log(Error.CANNOT_FIND_CD.toString());
@@ -107,7 +118,9 @@ public class App {
 								break;
 							}
 
+							System.out.println("Update start...");
 							AskUserUpdate.ask(storage.getStorage()[index1]);
+							System.out.println();
 
 							boolean ask = askToContinue();
 
@@ -120,7 +133,17 @@ public class App {
 							break;
 
 						case 2:
-							delegate.deleteCD(storage, AskUserID.ask());
+							String tmp3 = AskUserID.ask();
+
+							if (tmp3 == null) {
+								Logger.log("Cancelled");
+								System.out.println("Cancelled");
+								System.out.println();
+								break;
+							}
+
+							delegate.deleteCD(storage, tmp3);
+							System.out.println();
 
 							boolean ask1 = askToContinue();
 

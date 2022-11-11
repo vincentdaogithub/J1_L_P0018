@@ -11,7 +11,7 @@ public class AskUserCollectionName {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's collection name (Enter without input to exit): ");
+			System.out.print("Enter CD's collection name (game/movie/music/unknown): ");
 
 			try {
 				input = ReadUserInput.readString();
@@ -24,6 +24,7 @@ public class AskUserCollectionName {
 
 				if (input.isEmpty()) {
 					exit = true;
+					continue;
 				}
 
 				return CDCollectionName.stringToCollectionName(input);

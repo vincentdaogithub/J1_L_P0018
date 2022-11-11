@@ -14,7 +14,7 @@ public class AskUserID {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's ID: ");
+			System.out.print("Enter CD's ID (CD-####): ");
 
 			try {
 				input = ReadUserInput.readString();
