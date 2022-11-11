@@ -19,7 +19,7 @@ class CDCheck {
 		}
 
 		// check ID
-		if (CheckFormat.check(cd.getId(), CD.ID_FORMAT) != true) {
+		if (CheckFormat.checkFormat(cd.getId(), CD.ID_FORMAT) != true) {
 			Logger.log(Error.INVALID_CD_ID.toString());
 			return false;
 		}

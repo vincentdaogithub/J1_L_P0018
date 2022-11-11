@@ -32,7 +32,7 @@ public class AskUserID {
 				}
 
 				// check format
-				if (CheckFormat.check(input, CD.ID_FORMAT) != true) {
+				if (CheckFormat.checkFormat(input, CD.ID_FORMAT) != true) {
 					throw new Exception();
 				}
 

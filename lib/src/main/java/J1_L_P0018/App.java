@@ -5,6 +5,7 @@ import java.util.List;
 
 import J1_L_P0018.business.AskUserCD;
 import J1_L_P0018.business.AskUserID;
+import J1_L_P0018.business.AskUserTitle;
 import J1_L_P0018.business.AskUserUpdate;
 import J1_L_P0018.errors.Error;
 import J1_L_P0018.log.Logger;
@@ -16,6 +17,7 @@ import J1_L_P0018.persistance.entity.cd_storage.CDStorage;
 import J1_L_P0018.persistance.operations.GetCDInformation;
 import J1_L_P0018.persistance.operations.OperationsDelegate;
 import J1_L_P0018.presentation.MainMenu;
+import J1_L_P0018.tools.CheckFormat;
 import J1_L_P0018.tools.ConvertUserInput;
 import J1_L_P0018.tools.ReadUserInput;
 
@@ -25,6 +27,8 @@ public class App {
 		CDStorage storage = ReadDatabase.read();
 		OperationsDelegate delegate = new OperationsDelegate();
 		MainMenu menu = new MainMenu();
+
+		System.out.println(CheckFormat.checkFormat("fuckyou abc", "[a]"));
 
 		while (true) {
 			menu.print();
@@ -64,9 +68,9 @@ public class App {
 						break;
 					}
 
-					String id = AskUserID.ask();
+					String title = AskUserTitle.ask();
 
-					if (id == null) {
+					if (title == null) {
 						System.out.println("Cancelled");
 						System.out.println();
 						break;
@@ -74,7 +78,7 @@ public class App {
 
 					System.out.println();
 
-					Integer[] titles = delegate.searchCDByTitle(storage, id);
+					Integer[] titles = delegate.searchCDByTitle(storage, title);
 
 					if (titles == null) {
 						Logger.log(Error.CANNOT_FIND_CD.toString());
