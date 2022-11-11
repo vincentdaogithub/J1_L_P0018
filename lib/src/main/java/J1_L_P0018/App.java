@@ -41,7 +41,7 @@ public class App {
 			System.out.println();
 
 			switch (option) {
-				case 1:
+				case 1 -> {
 					CD tmp = AskUserCD.ask(storage);
 
 					if (tmp == null) {
@@ -52,9 +52,9 @@ public class App {
 
 					delegate.addCD(storage, tmp);
 					System.out.println();
-					break;
+				}
 
-				case 2:
+				case 2 -> {
 					String tmp4 = AskUserID.ask();
 
 					if (tmp4 == null) {
@@ -76,15 +76,15 @@ public class App {
 
 					delegate.printCD(storage, index);
 					System.out.println();
-					break;
+				}
 
-				case 3:
+				case 3 -> {
 					System.out.println("Number of CD: " + storage.getSize());
 					delegate.printAllCDs(storage);
 					System.out.println();
-					break;
+				}
 
-				case 4:
+				case 4 -> {
 					System.out.println("1. Update");
 					System.out.println("2. Delete");
 					System.out.print("Enter your option: ");
@@ -100,7 +100,7 @@ public class App {
 					System.out.println();
 
 					switch (tmp1) {
-						case 1:
+						case 1 -> {
 							String tmp2 = AskUserID.ask();
 
 							if (tmp2 == null) {
@@ -129,10 +129,9 @@ public class App {
 								Logger.log("Exiting program");
 								System.exit(0);
 							}
+						}
 
-							break;
-
-						case 2:
+						case 2 -> {
 							String tmp3 = AskUserID.ask();
 
 							if (tmp3 == null) {
@@ -152,18 +151,17 @@ public class App {
 								Logger.log("Exiting program");
 								System.exit(0);
 							}
-
-							break;
-
-						default:
+						}
+							
+						default -> {
 							Logger.log("Invalid option from user");
 							System.out.println("Invalid input");
 							break;
+						}
 					}
+				}
 
-					break;
-
-				case 5:
+				case 5 -> {
 					SaveDatabase.save(storage);
 
 					boolean ask2 = askToContinue();
@@ -173,10 +171,10 @@ public class App {
 						Logger.log("Exiting program");
 						System.exit(0);
 					}
+				}
+				
 
-					break;
-
-				case 6:
+				case 6 -> {
 					List<CD> list = ConvertDatabaseToCollection.convert(ReadDatabase.read());
 
 					Collections.sort(list, (CD cd1, CD cd2) -> {
@@ -196,14 +194,14 @@ public class App {
 						Logger.log("Exiting program");
 						System.exit(0);
 					}
+				}
 
-					break;
-
-				default:
+				default -> {
 					System.out.println("Exiting program...");
 					Logger.log("Exiting program");
 					System.exit(0);
 					break;
+				}
 			}
 		}
 	}
