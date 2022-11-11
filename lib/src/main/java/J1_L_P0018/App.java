@@ -42,22 +42,22 @@ public class App {
 
 			switch (option) {
 				case 1 -> {
-					CD tmp = AskUserCD.ask(storage);
+					CD add = AskUserCD.ask(storage);
 
-					if (tmp == null) {
+					if (add == null) {
 						System.out.println("Cancelled");
 						System.out.println();
 						break;
 					}
 
-					delegate.addCD(storage, tmp);
+					delegate.addCD(storage, add);
 					System.out.println();
 				}
 
 				case 2 -> {
-					String tmp4 = AskUserID.ask();
+					String id = AskUserID.ask();
 
-					if (tmp4 == null) {
+					if (id == null) {
 						System.out.println("Cancelled");
 						System.out.println();
 						break;
@@ -65,7 +65,7 @@ public class App {
 
 					System.out.println();
 
-					int index = delegate.searchCD(storage, tmp4);
+					int index = delegate.searchCD(storage, id);
 
 					if (index == -1) {
 						Logger.log(Error.CANNOT_FIND_CD.toString());
@@ -89,9 +89,9 @@ public class App {
 					System.out.println("2. Delete");
 					System.out.print("Enter your option: ");
 
-					Integer tmp1 = ConvertUserInput.toInt(ReadUserInput.readString());
+					Integer updateOption = ConvertUserInput.toInt(ReadUserInput.readString());
 
-					if (tmp1 == null) {
+					if (updateOption == null) {
 						Logger.log("Invalid option from user");
 						System.out.println("Invalid input");
 						break;
@@ -99,27 +99,27 @@ public class App {
 
 					System.out.println();
 
-					switch (tmp1) {
+					switch (updateOption) {
 						case 1 -> {
-							String tmp2 = AskUserID.ask();
+							String id = AskUserID.ask();
 
-							if (tmp2 == null) {
+							if (id == null) {
 								Logger.log("Cancelled");
 								System.out.println("Cancelled");
 								System.out.println();
 								break;
 							}
 
-							int index1 = delegate.searchCD(storage, tmp2);
+							int index = delegate.searchCD(storage, id);
 
-							if (index1 == -1) {
+							if (index == -1) {
 								Logger.log(Error.CANNOT_FIND_CD.toString());
 								System.out.println(Error.CANNOT_FIND_CD.toString());
 								break;
 							}
 
 							System.out.println("Update start...");
-							AskUserUpdate.ask(storage.getStorage()[index1]);
+							AskUserUpdate.ask(storage.getStorage()[index]);
 							System.out.println();
 
 							boolean ask = askToContinue();
@@ -132,21 +132,21 @@ public class App {
 						}
 
 						case 2 -> {
-							String tmp3 = AskUserID.ask();
+							String id = AskUserID.ask();
 
-							if (tmp3 == null) {
+							if (id == null) {
 								Logger.log("Cancelled");
 								System.out.println("Cancelled");
 								System.out.println();
 								break;
 							}
 
-							delegate.deleteCD(storage, tmp3);
+							delegate.deleteCD(storage, id);
 							System.out.println();
 
-							boolean ask1 = askToContinue();
+							boolean ask = askToContinue();
 
-							if (ask1 != true) {
+							if (ask != true) {
 								System.out.println("Exiting program...");
 								Logger.log("Exiting program");
 								System.exit(0);

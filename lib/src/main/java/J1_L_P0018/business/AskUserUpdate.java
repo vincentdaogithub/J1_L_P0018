@@ -69,5 +69,6 @@ public class AskUserUpdate {
 		cd.setYear(tmp.getYear());
 		
 		Logger.log("CD updated");
+		System.out.println("CD updated");
 	}
 }
