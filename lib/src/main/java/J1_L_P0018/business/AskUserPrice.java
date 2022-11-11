@@ -12,7 +12,7 @@ public class AskUserPrice {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's price (Enter without input to exit): ");
+			System.out.print("Enter CD's price: ");
 
 			try {
 				input = ReadUserInput.readString();
@@ -26,6 +26,7 @@ public class AskUserPrice {
 				// check empty
 				if (input.isEmpty()) {
 					exit = true;
+					continue;
 				}
 
 				float tmp = ConvertUserInput.toFloat(input);

@@ -10,7 +10,7 @@ public class AskUserTitle {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's title (Enter without input to exit): ");
+			System.out.print("Enter CD's title: ");
 
 			try {
 				input = ReadUserInput.readString();
@@ -23,6 +23,7 @@ public class AskUserTitle {
 				
 				if (input.isEmpty()) {
 					exit = true;
+					continue;
 				}
 
 				return input;

@@ -2,8 +2,6 @@ package J1_L_P0018.persistance.database;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.text.Format;
-
 import J1_L_P0018.errors.Error;
 import J1_L_P0018.log.Logger;
 import J1_L_P0018.persistance.entity.cd.CD;

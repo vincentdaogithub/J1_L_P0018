@@ -14,7 +14,7 @@ public class AskUserID {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's ID (Enter without input to exit): ");
+			System.out.print("Enter CD's ID: ");
 
 			try {
 				input = ReadUserInput.readString();
@@ -28,6 +28,7 @@ public class AskUserID {
 				// check empty
 				if (input.isEmpty()) {
 					exit = true;
+					continue;
 				}
 
 				// check format

@@ -11,7 +11,7 @@ public class AskUserType {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's type (Enter without input to exit): ");
+			System.out.print("Enter CD's type: ");
 
 			try {
 				input = ReadUserInput.readString();
@@ -24,6 +24,7 @@ public class AskUserType {
 
 				if (input.isEmpty()) {
 					exit = true;
+					continue;
 				}
 
 				return CDType.stringToType(input);

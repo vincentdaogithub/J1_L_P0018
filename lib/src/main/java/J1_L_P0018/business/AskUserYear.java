@@ -14,7 +14,7 @@ public class AskUserYear {
 		String input;
 
 		while (!exit) {
-			System.out.print("Enter CD's year (Enter without input to exit): ");
+			System.out.print("Enter CD's year: ");
 
 			try {
 				input = ReadUserInput.readString();
@@ -28,6 +28,7 @@ public class AskUserYear {
 				// check empty
 				if (input.isEmpty()) {
 					exit = true;
+					continue;
 				}
 
 				Integer year = ConvertUserInput.toInt(input);

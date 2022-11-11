@@ -3,8 +3,6 @@ package J1_L_P0018;
 import java.util.Collections;
 import java.util.List;
 
-import javax.xml.catalog.CatalogException;
-
 import J1_L_P0018.business.AskUserCD;
 import J1_L_P0018.business.AskUserID;
 import J1_L_P0018.business.AskUserUpdate;
@@ -45,75 +43,109 @@ public class App {
 			System.out.println();
 
 			switch (option) {
-			case 1:
-				CD tmp = AskUserCD.ask(storage);
-				
-				if (tmp == null) {
-					System.out.println("Cancelled");
-					System.out.println();
-					break;
-				}
-				
-				delegate.addCD(storage, tmp);
-				System.out.println();
-				break;
-
-			case 2:
-				int index = delegate.searchCD(storage, AskUserID.ask());
-
-				if (index == -1) {
-					Logger.log(Error.CANNOT_FIND_CD.toString());
-					System.out.println(Error.CANNOT_FIND_CD.toString());
-					break;
-				}
-
-				delegate.printCD(storage, index);
-				System.out.println();
-				break;
-
-			case 3:
-				System.out.println("Number of CD: " + storage.getSize());
-				delegate.printAllCDs(storage);
-				break;
-
-			case 4:
-				System.out.println("1. Update");
-				System.out.println("2. Delete");
-				System.out.print("Enter your option: ");
-
-				Integer tmp1 = ConvertUserInput.toInt(ReadUserInput.readString());
-
-				if (tmp1 == null) {
-					Logger.log("Invalid option from user");
-					System.out.println("Invalid input");
-					break;
-				}
-				
-				System.out.println();
-
-				switch (tmp1) {
 				case 1:
-					String tmp2 = AskUserID.ask();
-					
-					if (tmp2 == null) {
-						Logger.log("Invalid input");
-						System.out.println("Invalid input");
+					CD tmp = AskUserCD.ask(storage);
+
+					if (tmp == null) {
+						System.out.println("Cancelled");
+						System.out.println();
 						break;
 					}
-					
-					int index1 = delegate.searchCD(storage, AskUserID.ask());
 
-					if (index1 == -1) {
+					delegate.addCD(storage, tmp);
+					System.out.println();
+					break;
+
+				case 2:
+					int index = delegate.searchCD(storage, AskUserID.ask());
+
+					if (index == -1) {
 						Logger.log(Error.CANNOT_FIND_CD.toString());
 						System.out.println(Error.CANNOT_FIND_CD.toString());
 						break;
 					}
 
-					AskUserUpdate.ask(storage.getStorage()[index1]);
+					delegate.printCD(storage, index);
+					System.out.println();
+					break;
 
-					boolean ask = askToContinue();
+				case 3:
+					System.out.println("Number of CD: " + storage.getSize());
+					delegate.printAllCDs(storage);
+					break;
 
-					if (ask != true) {
+				case 4:
+					System.out.println("1. Update");
+					System.out.println("2. Delete");
+					System.out.print("Enter your option: ");
+
+					Integer tmp1 = ConvertUserInput.toInt(ReadUserInput.readString());
+
+					if (tmp1 == null) {
+						Logger.log("Invalid option from user");
+						System.out.println("Invalid input");
+						break;
+					}
+
+					System.out.println();
+
+					switch (tmp1) {
+						case 1:
+							String tmp2 = AskUserID.ask();
+
+							if (tmp2 == null) {
+								Logger.log("Invalid input");
+								System.out.println("Invalid input");
+								break;
+							}
+
+							int index1 = delegate.searchCD(storage, AskUserID.ask());
+
+							if (index1 == -1) {
+								Logger.log(Error.CANNOT_FIND_CD.toString());
+								System.out.println(Error.CANNOT_FIND_CD.toString());
+								break;
+							}
+
+							AskUserUpdate.ask(storage.getStorage()[index1]);
+
+							boolean ask = askToContinue();
+
+							if (ask != true) {
+								System.out.println("Exiting program...");
+								Logger.log("Exiting program");
+								System.exit(0);
+							}
+
+							break;
+
+						case 2:
+							delegate.deleteCD(storage, AskUserID.ask());
+
+							boolean ask1 = askToContinue();
+
+							if (ask1 != true) {
+								System.out.println("Exiting program...");
+								Logger.log("Exiting program");
+								System.exit(0);
+							}
+
+							break;
+
+						default:
+							Logger.log("Invalid option from user");
+							System.out.println("Invalid input");
+							break;
+					}
+
+					break;
+
+				case 5:
+					SaveDatabase.save(storage);
+
+					boolean ask2 = askToContinue();
+
+					if (ask2 != true) {
 						System.out.println("Exiting program...");
 						Logger.log("Exiting program");
 						System.exit(0);
@@ -121,12 +153,22 @@ public class App {
 
 					break;
 
-				case 2:
-					delegate.deleteCD(storage, AskUserID.ask());
+				case 6:
+					List<CD> list = ConvertDatabaseToCollection.convert(ReadDatabase.read());
 
-					boolean ask1 = askToContinue();
+					Collections.sort(list, (CD cd1, CD cd2) -> {
+						return cd1.getTitle().compareTo(cd2.getTitle());
+					});
 
-					if (ask1 != true) {
+					for (CD item : list) {
+						System.out.println(GetCDInformation.get(item));
+					}
+
+					System.out.println();
+
+					boolean ask3 = askToContinue();
+
+					if (ask3 != true) {
 						System.out.println("Exiting program...");
 						Logger.log("Exiting program");
 						System.exit(0);
@@ -135,54 +177,10 @@ public class App {
 					break;
 
 				default:
-					Logger.log("Invalid option from user");
-					System.out.println("Invalid input");
+					System.out.println("Exiting program...");
+					Logger.log("Exiting program");
+					System.exit(0);
 					break;
-				}
-
-				break;
-
-			case 5:
-				SaveDatabase.save(storage);
-
-				boolean ask2 = askToContinue();
-
-				if (ask2 != true) {
-					System.out.println("Exiting program...");
-					Logger.log("Exiting program");
-					System.exit(0);
-				}
-
-				break;
-
-			case 6:
-				List<CD> list = ConvertDatabaseToCollection.convert(ReadDatabase.read());
-
-				Collections.sort(list, (CD cd1, CD cd2) -> {
-					return cd1.getTitle().compareTo(cd2.getTitle());
-				});
-
-				for (CD item : list) {
-					System.out.println(GetCDInformation.get(item));
-				}
-
-				System.out.println();
-
-				boolean ask3 = askToContinue();
-
-				if (ask3 != true) {
-					System.out.println("Exiting program...");
-					Logger.log("Exiting program");
-					System.exit(0);
-				}
-
-				break;
-
-			default:
-				System.out.println("Exiting program...");
-				Logger.log("Exiting program");
-				System.exit(0);
-				break;
 			}
 		}
 	}
@@ -200,20 +198,20 @@ public class App {
 				System.out.println("Invalid input");
 				continue;
 			}
-			
+
 			System.out.println();
 
 			switch (option) {
-			case 1:
-				return true;
+				case 1:
+					return true;
 
-			case 2:
-				return false;
+				case 2:
+					return false;
 
-			default:
-				Logger.log("Invalid option from user");
-				System.out.println("Invalid input");
-				break;
+				default:
+					Logger.log("Invalid option from user");
+					System.out.println("Invalid input");
+					break;
 			}
 		}
 	}
