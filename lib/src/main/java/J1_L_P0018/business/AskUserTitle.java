@@ -28,8 +28,8 @@ public class AskUserTitle {
 
 				return input;
 			} catch (Exception e) {
-				Logger.log(Error.INVALID_CD_ID.toString());
-				System.out.println(Error.INVALID_CD_ID.toString());
+				Logger.log(Error.INVALID_CD_TITLE.toString());
+				System.out.println(Error.INVALID_CD_TITLE.toString());
 			}
 		}
 

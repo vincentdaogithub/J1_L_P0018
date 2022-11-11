@@ -1,6 +1,5 @@
 package J1_L_P0018.business;
 
-import java.io.IOException;
 import J1_L_P0018.errors.Error;
 import J1_L_P0018.log.Logger;
 import J1_L_P0018.persistance.entity.cd.CD;
@@ -37,9 +36,6 @@ public class AskUserID {
 				}
 
 				return input;
-			} catch (IOException e) {
-				Logger.log(Error.CANNOT_READ_USER_INPUT.toString());
-				throw new RuntimeException(Error.CANNOT_READ_USER_INPUT.toString());
 			} catch (Exception e) {
 				Logger.log(Error.INVALID_CD_ID.toString());
 				System.out.println(Error.INVALID_CD_ID.toString());

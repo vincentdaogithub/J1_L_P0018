@@ -29,8 +29,8 @@ public class AskUserType {
 
 				return CDType.stringToType(input);
 			} catch (Exception e) {
-				Logger.log(Error.INVALID_CD_ID.toString());
-				System.out.println(Error.INVALID_CD_ID.toString());
+				Logger.log(Error.INVALID_CD_TYPE.toString());
+				System.out.println(Error.INVALID_CD_TYPE.toString());
 			}
 		}
 

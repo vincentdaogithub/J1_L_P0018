@@ -1,6 +1,5 @@
 package J1_L_P0018.business;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import J1_L_P0018.errors.Error;
@@ -39,12 +38,9 @@ public class AskUserYear {
 				}
 
 				return year;
-			} catch (IOException e) {
-				Logger.log(Error.CANNOT_READ_USER_INPUT.toString());
-				throw new RuntimeException(Error.CANNOT_READ_USER_INPUT.toString());
 			} catch (Exception e) {
-				Logger.log(Error.INVALID_CD_ID.toString());
-				System.out.println(Error.INVALID_CD_ID.toString());
+				Logger.log(Error.INVALID_CD_YEAR.toString());
+				System.out.println(Error.INVALID_CD_YEAR.toString());
 			}
 		}
 

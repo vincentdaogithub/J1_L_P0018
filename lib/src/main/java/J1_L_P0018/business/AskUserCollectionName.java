@@ -29,8 +29,8 @@ public class AskUserCollectionName {
 
 				return CDCollectionName.stringToCollectionName(input);
 			} catch (Exception e) {
-				Logger.log(Error.INVALID_CD_ID.toString());
-				System.out.println(Error.INVALID_CD_ID.toString());
+				Logger.log(Error.INVALID_CD_COLLECTION_NAME.toString());
+				System.out.println(Error.INVALID_CD_COLLECTION_NAME.toString());
 			}
 		}
 
