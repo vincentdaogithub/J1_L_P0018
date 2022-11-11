@@ -74,11 +74,11 @@ class SearchCDFromStorage {
 		List<Integer> result = new ArrayList<>();
 
 		for (int i = 0; i < tmpSize; i++) {
-			if (CheckFormat.findFormat(tmpStorage[i].getTitle().toLowerCase(), title.toLowerCase()) == true) {
+			if (CheckFormat.findFormat(tmpStorage[i].getTitle(), title) == true) {
 				result.add(i);
 			}
 		}
 
-		return result.isEmpty() ? null : (Integer[]) result.toArray();
+		return result.isEmpty() ? null : result.toArray(new Integer[0]);
 	}
 }

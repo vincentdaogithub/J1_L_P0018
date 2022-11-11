@@ -9,7 +9,7 @@ import J1_L_P0018.log.Logger;
 public class CheckFormat {
 	public static final boolean checkFormat(String toCheck, String format) {
 		try {
-			Pattern pattern = Pattern.compile(format);
+			Pattern pattern = Pattern.compile(format, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(toCheck);
 			
 			return matcher.matches();
