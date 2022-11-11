@@ -16,7 +16,7 @@ class LoggerInitiation {
 			builder.append(LoggerMessageBuilder.build("Generating new session..."));
 			builder.append(LoggerMessageBuilder.build("New session has been generated"));
 
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath))) {
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath, true))) {
 				writer.write(builder.toString());
 			}
 		} catch (IOException exception) {
